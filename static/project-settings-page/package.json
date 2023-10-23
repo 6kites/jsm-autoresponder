@@ -1,0 +1,57 @@
+{
+  "name": "jira-project-settings-page",
+  "version": "0.1.18",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "@atlaskit/button": "^16.10.2",
+    "@atlaskit/checkbox": "^12.6.11",
+    "@atlaskit/css-reset": "^6.5.4",
+    "@atlaskit/datetime-picker": "^12.10.2",
+    "@atlaskit/dropdown-menu": "^12.1.2",
+    "@atlaskit/form": "^8.11.12",
+    "@atlaskit/lozenge": "^11.4.5",
+    "@atlaskit/modal-dialog": "^12.8.3",
+    "@atlaskit/primitives": "^1.6.6",
+    "@atlaskit/select": "^16.7.3",
+    "@atlaskit/spinner": "^15.6.0",
+    "@atlaskit/tabs": "^13.4.9",
+    "@atlaskit/tag": "^11.6.1",
+    "@atlaskit/textarea": "^4.7.7",
+    "@atlaskit/textfield": "^5.6.8",
+    "@atlaskit/toggle": "^12.6.11",
+    "@atlaskit/tokens": "^1.26.1",
+    "@atlaskit/tooltip": "^17.8.6",
+    "@forge/bridge": "2.6.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^3.0.3",
+    "react-scripts": "^5.0.1"
+  },
+  "scripts": {
+    "start": "GENERATE_SOURCEMAP=false PORT=3002 react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

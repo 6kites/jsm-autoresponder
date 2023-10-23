@@ -1,0 +1,90 @@
+permissions:
+  content:
+    styles:
+      - unsafe-inline
+  scopes:
+    - read:me
+    - read:jira-work
+    - write:jira-work
+    - manage:jira-project
+    - storage:app
+  external:
+    fetch:
+      backend:
+        - api.openai.com
+        - mazin.ngrok.io
+modules:
+  trigger:
+    - key: issue-comment-trigger
+      function: issue-comment-handler
+      events:
+        - avi:jira:commented:issue
+      filter:
+        ignoreSelf: true
+    - key: issue-created-trigger
+      function: issue-create-handler
+      events:
+        - avi:jira:created:issue
+      filter:
+        ignoreSelf: true
+  #   - key: other-trigger
+  #     function: another
+  #     events:
+  #       - avi:jira:updated:issue
+  #     filter:
+  #       ignoreSelf: true
+  jira:adminPage:
+    - key: jsm-autoresponder-jira-admin-page
+      resource: admin-page
+      title: JSM Autoresponder - Admin Settings
+      resolver:
+        function: admin-resolver
+  jira:projectSettingsPage:
+    - key: jira-project-settings
+      resource: project-settings
+      resolver:
+        function: projectSettingsResolver
+      title: JSM Autoresponder - Project Settings
+  jira:issuePanel:
+    - key: ptm-ui-test-hello-world-issue-panel
+      # resource: panel
+      resource: main
+      resolver:
+        function: resolver
+      # render: native
+      title: JSM Autoresponder
+      icon: resource:my-icon;praecipio-logo-64px.png
+  function:
+    # - key: main
+    #   handler: index.run
+    # - key: another
+    #   handler: index.another
+    - key: resolver
+      handler: index.handler
+    - key: admin-resolver
+      handler: index.adminHandler
+    - key: projectSettingsResolver
+      handler: index.projectSettingsHandler
+    - key: issue-comment-handler
+      handler: index.issueCommentEventHandler
+    - key: issue-create-handler
+      handler: index.issueCreateEventHandler
+resources:
+  # - key: panel
+  #   path: src/frontend/index.jsx
+  - key: main
+    path: static/issue-panel/build
+    tunnel:
+      port: 3000
+  - key: admin-page
+    path: static/admin-page/build
+    tunnel:
+      port: 3001
+  - key: project-settings
+    path: static/project-settings-page/build
+    tunnel:
+      port: 3002
+  - key: my-icon
+    path: static/images
+app:
+  id: ari:cloud:ecosystem::app/92c2dc18-1f48-4ab4-9c6b-6199db6132ab
