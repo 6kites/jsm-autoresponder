@@ -7,6 +7,10 @@ export const ISSUE_PROPERTY_KEY = {
   prompt: `${issuePropertyKey}.prompt`,
   chatHistory: `${issuePropertyKey}.chatHistory`,
 }
+const {OPENAI_KEY} = process.env;
+if (!OPENAI_KEY) {
+  throw new Error("OPENAI_KEY is not defined")
+}
 
 export async function getProjects({typeKey="service_desk", startAt=0, maxResults=50}={}) {
   const queryParams = new URLSearchParams({typeKey, startAt, maxResults});
@@ -124,13 +128,12 @@ export async function callChatGPT(prompt) {
     temperature: 0.7,
   };
 
-  // note - token will need to be added via secrets manager
   let options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization:
-        "Bearer XXXXXXXXXXXXXXXXXXXXXXX",
+        `Bearer ${OPENAI_KEY}`,
     },
     body: JSON.stringify(body),
   };
@@ -166,13 +169,12 @@ export async function callChatGPTWithContext(messages) {
     temperature: 0.7,
   };
 
-  // note - token will need to be added via secrets manager
   let options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization:
-        "Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        `Bearer ${OPENAI_KEY}`,
     },
     body: JSON.stringify(body),
   };
