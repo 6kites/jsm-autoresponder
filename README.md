@@ -89,6 +89,15 @@ $ forge install -e production
 
 ...to install into a production environment.
 
+
+### Authentication
+
+To configure authentication you'll need to obtain an OpenAI token and install that into the app using the following command:
+
+```
+$ forge variables set --encrypt OPENAI_KEY <your-openai-token>
+```
+
 ### Notes
 
 - Use the `forge deploy` command when you want to persist code changes.
